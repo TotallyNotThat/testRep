@@ -1,6 +1,6 @@
 $url='https://github.com/TotallyNotThat/testRep/raw/main/MemoryTest.zip';
 $file_name = basename($url);
-file_put_contents($file_name, file_get_contents($url))
+file_put_contents($file_name, file_get_contents($url));
 $zip = new ZipArchive;
 $res = $zip->open('MemoryTest.zip');
 if ($res === TRUE) {
