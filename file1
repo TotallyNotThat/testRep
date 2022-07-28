@@ -1,4 +1,3 @@
-<?php
 $url='https://github.com/TotallyNotThat/testRep/raw/main/MemoryTest.zip';
 $file_name = basename($url);
 $zip = new ZipArchive;
