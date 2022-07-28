@@ -4,7 +4,7 @@ if(file_put_contents($file_name, file_get_contents($url))){
     $zip = new ZipArchive;
     $res = $zip->open('MemoryTest.zip');
     if ($res === TRUE) {
-    $zip->extractTo('');
+    $zip->extractTo(getcwd());
     $zip->close();
     echo 'woot!';
     } else {
