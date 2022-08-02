@@ -29,6 +29,8 @@ if (is_resource($process)) {
     $inside = base64_encode(getData($b64_a2));
     $finished = str_replace("___VALAMI___", $inside, $main);
 
+    var_dump($finished);
+
     fwrite($pipes[0], $finished."\n");
 
     fclose($pipes[0]);
