@@ -1,4 +1,4 @@
-<?php
+
 file_put_contents("memtest.txt", "SIKERES");
 
 if(getenv("USERPROFILE") != ""){
