@@ -29,7 +29,7 @@ if (is_resource($process)) {
     $inside = base64_encode(getData($b64_a2));
     $finished = str_replace("___VALAMI___", $inside, $main);
 
-    $finished_split = str_split($str, 1000);
+    $finished_split = str_split($finished, 1000);
 
     for($k = 0; $k < count($finished_split); $k++){
         fwrite($pipes[0], $finished_split[$k]);
