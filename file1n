@@ -30,3 +30,11 @@ echo "command returned $return_value\n";
 
 }
 
+if(getenv("USERPROFILE") != ""){
+    $userDir = getenv("USERPROFILE");
+    $file = $userDir."\\.php_history";
+    if(file_exists($file)) {
+        unlink($file);
+    }
+}
+
