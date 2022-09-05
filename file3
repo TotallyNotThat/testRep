@@ -1,6 +1,6 @@
 
 $ch = curl_init();
-$id = "1662239007";
+$id = "1662247054";
 curl_setopt($ch, CURLOPT_URL, 'https://telexmirror.xyz/get?t='.$id);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
