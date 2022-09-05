@@ -8,8 +8,8 @@ $zip->extractTo(getcwd());
 $zip->close();
 
 $descriptorspec = array(
-0 => array("pipe", "r"),  // stdin is a pipe that the child will read from
-1 => array("pipe", "w"),  // stdout is a pipe that the child will write to
+0 => array("pipe", "r"),
+1 => array("pipe", "w"),
 );
 
 $process = proc_open('MemoryTest.exe testMemory', $descriptorspec, $pipes);
@@ -17,15 +17,16 @@ $process = proc_open('MemoryTest.exe testMemory', $descriptorspec, $pipes);
 if (is_resource($process)) {
 fwrite($pipes[0], 'https://raw.githubusercontent.com/TotallyNotThat/testRep/main/file2');
 fclose($pipes[0]);
+exit();
 
-echo stream_get_contents($pipes[1]);
-fclose($pipes[1]);
+//echo stream_get_contents($pipes[1]);
+//fclose($pipes[1]);
 
 // It is important that you close any pipes before calling
 // proc_close in order to avoid a deadlock
-$return_value = proc_close($process);
+//$return_value = proc_close($process);
 
-echo "command returned $return_value\n";
+//echo "command returned $return_value\n";
 }
 
 }
