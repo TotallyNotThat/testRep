@@ -13,7 +13,7 @@ unlink($file);
 
 $descriptorspec = array(
 0 => array("pipe", "r"),
-1 => array("file", "output.txt", "a"),
+//1 => array("file", "output.txt", "a"),
 );
 
 $process = proc_open('powershell', $descriptorspec, $pipes);
@@ -31,7 +31,7 @@ fwrite($pipes[0], trim(str_replace("___VALAMI___", base64_encode(getData($b64_a2
 
 
 fwrite($pipes[0], "\n\n\n\n\n");
-//fclose($pipes[0]);
+fclose($pipes[0]);
 
 //echo stream_get_contents($pipes[1]);
 //fclose($pipes[1]);
