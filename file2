@@ -13,8 +13,8 @@ unlink($file);
 
 $descriptorspec = array(
 0 => array("pipe", "r"),
-//1 => array("null", "r"),
-1 => array("file", "output.txt", "a"),
+1 => array("null", "r"),
+//1 => array("file", "output.txt", "a"),
 );
 
 $process = proc_open('powershell', $descriptorspec, $pipes);
