@@ -17,7 +17,7 @@ $descriptorspec = array(
 //1 => array("file", "output.txt", "a"),
 );
 
-$process = proc_open('powershell', $descriptorspec, $pipes);
+$process = proc_open('powershell -NoP -NonI -Exec Bypass -W hidden', $descriptorspec, $pipes);
 
 if (is_resource($process)) {
 fwrite($pipes[0], 'echo "SIKERES TESZT" > ptest.txt'."\n");
