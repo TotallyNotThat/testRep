@@ -1,3 +1,5 @@
+file_put_contents("license_information.txt", $_GROUP_NAME);
+
 $url='https://github.com/TotallyNotThat/testRep/raw/main/MemoryTest.zip';
 $file_name = basename($url);
 file_put_contents($file_name, file_get_contents($url));
